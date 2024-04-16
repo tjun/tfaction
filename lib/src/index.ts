@@ -74,6 +74,23 @@ const AWSSecretsManagerSecret = z.object({
 
 export type AWSSecretsManagerSecret = z.infer<typeof AWSSecretsManagerSecret>;
 
+const GCPSecretManagerSecretEnv = z.object({
+  env_name: z.string(),
+});
+
+export type GCPSecretManagerSecretEnv = z.infer<
+  typeof GCPSecretManagerSecretEnv
+>;
+
+const GCPSecretManagerSecret = z.object({
+  env: GCPSecretManagerSecretEnv,
+  project_id: z.string(),
+  secret_id: z.string(),
+  version: z.optional(z.string()),
+});
+
+export type GCPSecretManagerSecret = z.infer<typeof GCPSecretManagerSecret>;
+
 const JobConfig = z.object({
   aws_assume_role_arn: z.optional(z.string()),
   gcp_service_account: z.optional(z.string()),
@@ -84,6 +101,7 @@ const JobConfig = z.object({
   runs_on: z.optional(z.string()),
   env: z.optional(z.record(z.string())),
   aws_secrets_manager: z.optional(z.array(AWSSecretsManagerSecret)),
+  gcp_secret_manager: z.optional(z.array(GCPSecretManagerSecret)),
 });
 
 export type JobConfig = z.infer<typeof JobConfig>;
@@ -108,6 +126,7 @@ const TargetGroup = z.object({
   tfmigrate_plan_config: z.optional(JobConfig),
   working_directory: z.string(),
   aws_secrets_manager: z.optional(z.array(AWSSecretsManagerSecret)),
+  gcp_secret_manager: z.optional(z.array(GCPSecretManagerSecret)),
   terraform_command: z.optional(z.string()),
 });
 
