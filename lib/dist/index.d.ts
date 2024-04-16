@@ -94,6 +94,41 @@ declare const AWSSecretsManagerSecret: z.ZodObject<{
     aws_region?: string | undefined;
 }>;
 export type AWSSecretsManagerSecret = z.infer<typeof AWSSecretsManagerSecret>;
+declare const GCPSecretManagerSecretEnv: z.ZodObject<{
+    env_name: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    env_name: string;
+}, {
+    env_name: string;
+}>;
+export type GCPSecretManagerSecretEnv = z.infer<typeof GCPSecretManagerSecretEnv>;
+declare const GCPSecretManagerSecret: z.ZodObject<{
+    env: z.ZodObject<{
+        env_name: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        env_name: string;
+    }, {
+        env_name: string;
+    }>;
+    project_id: z.ZodString;
+    secret_id: z.ZodString;
+    version: z.ZodOptional<z.ZodString>;
+}, "strip", z.ZodTypeAny, {
+    secret_id: string;
+    env: {
+        env_name: string;
+    };
+    project_id: string;
+    version?: string | undefined;
+}, {
+    secret_id: string;
+    env: {
+        env_name: string;
+    };
+    project_id: string;
+    version?: string | undefined;
+}>;
+export type GCPSecretManagerSecret = z.infer<typeof GCPSecretManagerSecret>;
 declare const JobConfig: z.ZodObject<{
     aws_assume_role_arn: z.ZodOptional<z.ZodString>;
     gcp_service_account: z.ZodOptional<z.ZodString>;
@@ -155,6 +190,32 @@ declare const JobConfig: z.ZodObject<{
         version_stage?: string | undefined;
         aws_region?: string | undefined;
     }>, "many">>;
+    gcp_secret_manager: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        env: z.ZodObject<{
+            env_name: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            env_name: string;
+        }, {
+            env_name: string;
+        }>;
+        project_id: z.ZodString;
+        secret_id: z.ZodString;
+        version: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        secret_id: string;
+        env: {
+            env_name: string;
+        };
+        project_id: string;
+        version?: string | undefined;
+    }, {
+        secret_id: string;
+        env: {
+            env_name: string;
+        };
+        project_id: string;
+        version?: string | undefined;
+    }>, "many">>;
 }, "strip", z.ZodTypeAny, {
     aws_assume_role_arn?: string | undefined;
     gcp_service_account?: string | undefined;
@@ -180,6 +241,14 @@ declare const JobConfig: z.ZodObject<{
         version_stage?: string | undefined;
         aws_region?: string | undefined;
     }[] | undefined;
+    gcp_secret_manager?: {
+        secret_id: string;
+        env: {
+            env_name: string;
+        };
+        project_id: string;
+        version?: string | undefined;
+    }[] | undefined;
 }, {
     aws_assume_role_arn?: string | undefined;
     gcp_service_account?: string | undefined;
@@ -204,6 +273,14 @@ declare const JobConfig: z.ZodObject<{
         version_id?: string | undefined;
         version_stage?: string | undefined;
         aws_region?: string | undefined;
+    }[] | undefined;
+    gcp_secret_manager?: {
+        secret_id: string;
+        env: {
+            env_name: string;
+        };
+        project_id: string;
+        version?: string | undefined;
     }[] | undefined;
 }>;
 export type JobConfig = z.infer<typeof JobConfig>;
@@ -300,6 +377,32 @@ declare const TargetGroup: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }>, "many">>;
+        gcp_secret_manager: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            env: z.ZodObject<{
+                env_name: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                env_name: string;
+            }, {
+                env_name: string;
+            }>;
+            project_id: z.ZodString;
+            secret_id: z.ZodString;
+            version: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }, {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         aws_assume_role_arn?: string | undefined;
         gcp_service_account?: string | undefined;
@@ -325,6 +428,14 @@ declare const TargetGroup: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }[] | undefined;
     }, {
         aws_assume_role_arn?: string | undefined;
         gcp_service_account?: string | undefined;
@@ -349,6 +460,14 @@ declare const TargetGroup: z.ZodObject<{
             version_id?: string | undefined;
             version_stage?: string | undefined;
             aws_region?: string | undefined;
+        }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
         }[] | undefined;
     }>>;
     terraform_plan_config: z.ZodOptional<z.ZodObject<{
@@ -412,6 +531,32 @@ declare const TargetGroup: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }>, "many">>;
+        gcp_secret_manager: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            env: z.ZodObject<{
+                env_name: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                env_name: string;
+            }, {
+                env_name: string;
+            }>;
+            project_id: z.ZodString;
+            secret_id: z.ZodString;
+            version: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }, {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         aws_assume_role_arn?: string | undefined;
         gcp_service_account?: string | undefined;
@@ -437,6 +582,14 @@ declare const TargetGroup: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }[] | undefined;
     }, {
         aws_assume_role_arn?: string | undefined;
         gcp_service_account?: string | undefined;
@@ -461,6 +614,14 @@ declare const TargetGroup: z.ZodObject<{
             version_id?: string | undefined;
             version_stage?: string | undefined;
             aws_region?: string | undefined;
+        }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
         }[] | undefined;
     }>>;
     tfmigrate_apply_config: z.ZodOptional<z.ZodObject<{
@@ -524,6 +685,32 @@ declare const TargetGroup: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }>, "many">>;
+        gcp_secret_manager: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            env: z.ZodObject<{
+                env_name: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                env_name: string;
+            }, {
+                env_name: string;
+            }>;
+            project_id: z.ZodString;
+            secret_id: z.ZodString;
+            version: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }, {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         aws_assume_role_arn?: string | undefined;
         gcp_service_account?: string | undefined;
@@ -549,6 +736,14 @@ declare const TargetGroup: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }[] | undefined;
     }, {
         aws_assume_role_arn?: string | undefined;
         gcp_service_account?: string | undefined;
@@ -573,6 +768,14 @@ declare const TargetGroup: z.ZodObject<{
             version_id?: string | undefined;
             version_stage?: string | undefined;
             aws_region?: string | undefined;
+        }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
         }[] | undefined;
     }>>;
     tfmigrate_plan_config: z.ZodOptional<z.ZodObject<{
@@ -636,6 +839,32 @@ declare const TargetGroup: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }>, "many">>;
+        gcp_secret_manager: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            env: z.ZodObject<{
+                env_name: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                env_name: string;
+            }, {
+                env_name: string;
+            }>;
+            project_id: z.ZodString;
+            secret_id: z.ZodString;
+            version: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }, {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         aws_assume_role_arn?: string | undefined;
         gcp_service_account?: string | undefined;
@@ -661,6 +890,14 @@ declare const TargetGroup: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }[] | undefined;
     }, {
         aws_assume_role_arn?: string | undefined;
         gcp_service_account?: string | undefined;
@@ -685,6 +922,14 @@ declare const TargetGroup: z.ZodObject<{
             version_id?: string | undefined;
             version_stage?: string | undefined;
             aws_region?: string | undefined;
+        }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
         }[] | undefined;
     }>>;
     working_directory: z.ZodString;
@@ -721,6 +966,32 @@ declare const TargetGroup: z.ZodObject<{
         version_id?: string | undefined;
         version_stage?: string | undefined;
         aws_region?: string | undefined;
+    }>, "many">>;
+    gcp_secret_manager: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        env: z.ZodObject<{
+            env_name: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            env_name: string;
+        }, {
+            env_name: string;
+        }>;
+        project_id: z.ZodString;
+        secret_id: z.ZodString;
+        version: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        secret_id: string;
+        env: {
+            env_name: string;
+        };
+        project_id: string;
+        version?: string | undefined;
+    }, {
+        secret_id: string;
+        env: {
+            env_name: string;
+        };
+        project_id: string;
+        version?: string | undefined;
     }>, "many">>;
     terraform_command: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
@@ -769,6 +1040,14 @@ declare const TargetGroup: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }[] | undefined;
     } | undefined;
     terraform_plan_config?: {
         aws_assume_role_arn?: string | undefined;
@@ -794,6 +1073,14 @@ declare const TargetGroup: z.ZodObject<{
             version_id?: string | undefined;
             version_stage?: string | undefined;
             aws_region?: string | undefined;
+        }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
         }[] | undefined;
     } | undefined;
     tfmigrate_apply_config?: {
@@ -821,6 +1108,14 @@ declare const TargetGroup: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }[] | undefined;
     } | undefined;
     tfmigrate_plan_config?: {
         aws_assume_role_arn?: string | undefined;
@@ -847,6 +1142,14 @@ declare const TargetGroup: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }[] | undefined;
     } | undefined;
     aws_secrets_manager?: {
         envs: {
@@ -857,6 +1160,14 @@ declare const TargetGroup: z.ZodObject<{
         version_id?: string | undefined;
         version_stage?: string | undefined;
         aws_region?: string | undefined;
+    }[] | undefined;
+    gcp_secret_manager?: {
+        secret_id: string;
+        env: {
+            env_name: string;
+        };
+        project_id: string;
+        version?: string | undefined;
     }[] | undefined;
     terraform_command?: string | undefined;
 }, {
@@ -905,6 +1216,14 @@ declare const TargetGroup: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }[] | undefined;
     } | undefined;
     terraform_plan_config?: {
         aws_assume_role_arn?: string | undefined;
@@ -930,6 +1249,14 @@ declare const TargetGroup: z.ZodObject<{
             version_id?: string | undefined;
             version_stage?: string | undefined;
             aws_region?: string | undefined;
+        }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
         }[] | undefined;
     } | undefined;
     tfmigrate_apply_config?: {
@@ -957,6 +1284,14 @@ declare const TargetGroup: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }[] | undefined;
     } | undefined;
     tfmigrate_plan_config?: {
         aws_assume_role_arn?: string | undefined;
@@ -983,6 +1318,14 @@ declare const TargetGroup: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }[] | undefined;
     } | undefined;
     aws_secrets_manager?: {
         envs: {
@@ -993,6 +1336,14 @@ declare const TargetGroup: z.ZodObject<{
         version_id?: string | undefined;
         version_stage?: string | undefined;
         aws_region?: string | undefined;
+    }[] | undefined;
+    gcp_secret_manager?: {
+        secret_id: string;
+        env: {
+            env_name: string;
+        };
+        project_id: string;
+        version?: string | undefined;
     }[] | undefined;
     terraform_command?: string | undefined;
 }>;
@@ -1085,6 +1436,32 @@ declare const TargetConfig: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }>, "many">>;
+        gcp_secret_manager: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            env: z.ZodObject<{
+                env_name: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                env_name: string;
+            }, {
+                env_name: string;
+            }>;
+            project_id: z.ZodString;
+            secret_id: z.ZodString;
+            version: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }, {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         aws_assume_role_arn?: string | undefined;
         gcp_service_account?: string | undefined;
@@ -1110,6 +1487,14 @@ declare const TargetConfig: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }[] | undefined;
     }, {
         aws_assume_role_arn?: string | undefined;
         gcp_service_account?: string | undefined;
@@ -1134,6 +1519,14 @@ declare const TargetConfig: z.ZodObject<{
             version_id?: string | undefined;
             version_stage?: string | undefined;
             aws_region?: string | undefined;
+        }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
         }[] | undefined;
     }>>;
     terraform_plan_config: z.ZodOptional<z.ZodObject<{
@@ -1197,6 +1590,32 @@ declare const TargetConfig: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }>, "many">>;
+        gcp_secret_manager: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            env: z.ZodObject<{
+                env_name: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                env_name: string;
+            }, {
+                env_name: string;
+            }>;
+            project_id: z.ZodString;
+            secret_id: z.ZodString;
+            version: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }, {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         aws_assume_role_arn?: string | undefined;
         gcp_service_account?: string | undefined;
@@ -1222,6 +1641,14 @@ declare const TargetConfig: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }[] | undefined;
     }, {
         aws_assume_role_arn?: string | undefined;
         gcp_service_account?: string | undefined;
@@ -1246,6 +1673,14 @@ declare const TargetConfig: z.ZodObject<{
             version_id?: string | undefined;
             version_stage?: string | undefined;
             aws_region?: string | undefined;
+        }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
         }[] | undefined;
     }>>;
     tfmigrate_apply_config: z.ZodOptional<z.ZodObject<{
@@ -1309,6 +1744,32 @@ declare const TargetConfig: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }>, "many">>;
+        gcp_secret_manager: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            env: z.ZodObject<{
+                env_name: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                env_name: string;
+            }, {
+                env_name: string;
+            }>;
+            project_id: z.ZodString;
+            secret_id: z.ZodString;
+            version: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }, {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         aws_assume_role_arn?: string | undefined;
         gcp_service_account?: string | undefined;
@@ -1334,6 +1795,14 @@ declare const TargetConfig: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }[] | undefined;
     }, {
         aws_assume_role_arn?: string | undefined;
         gcp_service_account?: string | undefined;
@@ -1358,6 +1827,14 @@ declare const TargetConfig: z.ZodObject<{
             version_id?: string | undefined;
             version_stage?: string | undefined;
             aws_region?: string | undefined;
+        }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
         }[] | undefined;
     }>>;
     tfmigrate_plan_config: z.ZodOptional<z.ZodObject<{
@@ -1421,6 +1898,32 @@ declare const TargetConfig: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }>, "many">>;
+        gcp_secret_manager: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            env: z.ZodObject<{
+                env_name: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                env_name: string;
+            }, {
+                env_name: string;
+            }>;
+            project_id: z.ZodString;
+            secret_id: z.ZodString;
+            version: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }, {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         aws_assume_role_arn?: string | undefined;
         gcp_service_account?: string | undefined;
@@ -1446,6 +1949,14 @@ declare const TargetConfig: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }[] | undefined;
     }, {
         aws_assume_role_arn?: string | undefined;
         gcp_service_account?: string | undefined;
@@ -1470,6 +1981,14 @@ declare const TargetConfig: z.ZodObject<{
             version_id?: string | undefined;
             version_stage?: string | undefined;
             aws_region?: string | undefined;
+        }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
         }[] | undefined;
     }>>;
     terraform_command: z.ZodOptional<z.ZodString>;
@@ -1515,6 +2034,14 @@ declare const TargetConfig: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }[] | undefined;
     } | undefined;
     terraform_plan_config?: {
         aws_assume_role_arn?: string | undefined;
@@ -1540,6 +2067,14 @@ declare const TargetConfig: z.ZodObject<{
             version_id?: string | undefined;
             version_stage?: string | undefined;
             aws_region?: string | undefined;
+        }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
         }[] | undefined;
     } | undefined;
     tfmigrate_apply_config?: {
@@ -1567,6 +2102,14 @@ declare const TargetConfig: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }[] | undefined;
     } | undefined;
     tfmigrate_plan_config?: {
         aws_assume_role_arn?: string | undefined;
@@ -1592,6 +2135,14 @@ declare const TargetConfig: z.ZodObject<{
             version_id?: string | undefined;
             version_stage?: string | undefined;
             aws_region?: string | undefined;
+        }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
         }[] | undefined;
     } | undefined;
     terraform_command?: string | undefined;
@@ -1637,6 +2188,14 @@ declare const TargetConfig: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }[] | undefined;
     } | undefined;
     terraform_plan_config?: {
         aws_assume_role_arn?: string | undefined;
@@ -1662,6 +2221,14 @@ declare const TargetConfig: z.ZodObject<{
             version_id?: string | undefined;
             version_stage?: string | undefined;
             aws_region?: string | undefined;
+        }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
         }[] | undefined;
     } | undefined;
     tfmigrate_apply_config?: {
@@ -1689,6 +2256,14 @@ declare const TargetConfig: z.ZodObject<{
             version_stage?: string | undefined;
             aws_region?: string | undefined;
         }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }[] | undefined;
     } | undefined;
     tfmigrate_plan_config?: {
         aws_assume_role_arn?: string | undefined;
@@ -1714,6 +2289,14 @@ declare const TargetConfig: z.ZodObject<{
             version_id?: string | undefined;
             version_stage?: string | undefined;
             aws_region?: string | undefined;
+        }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
         }[] | undefined;
     } | undefined;
     terraform_command?: string | undefined;
@@ -1887,6 +2470,32 @@ declare const Config: z.ZodObject<{
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
             }>, "many">>;
+            gcp_secret_manager: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                env: z.ZodObject<{
+                    env_name: z.ZodString;
+                }, "strip", z.ZodTypeAny, {
+                    env_name: string;
+                }, {
+                    env_name: string;
+                }>;
+                project_id: z.ZodString;
+                secret_id: z.ZodString;
+                version: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
+            }, {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
+            }>, "many">>;
         }, "strip", z.ZodTypeAny, {
             aws_assume_role_arn?: string | undefined;
             gcp_service_account?: string | undefined;
@@ -1912,6 +2521,14 @@ declare const Config: z.ZodObject<{
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
             }[] | undefined;
+            gcp_secret_manager?: {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
+            }[] | undefined;
         }, {
             aws_assume_role_arn?: string | undefined;
             gcp_service_account?: string | undefined;
@@ -1936,6 +2553,14 @@ declare const Config: z.ZodObject<{
                 version_id?: string | undefined;
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
+            }[] | undefined;
+            gcp_secret_manager?: {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
             }[] | undefined;
         }>>;
         terraform_plan_config: z.ZodOptional<z.ZodObject<{
@@ -1999,6 +2624,32 @@ declare const Config: z.ZodObject<{
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
             }>, "many">>;
+            gcp_secret_manager: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                env: z.ZodObject<{
+                    env_name: z.ZodString;
+                }, "strip", z.ZodTypeAny, {
+                    env_name: string;
+                }, {
+                    env_name: string;
+                }>;
+                project_id: z.ZodString;
+                secret_id: z.ZodString;
+                version: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
+            }, {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
+            }>, "many">>;
         }, "strip", z.ZodTypeAny, {
             aws_assume_role_arn?: string | undefined;
             gcp_service_account?: string | undefined;
@@ -2024,6 +2675,14 @@ declare const Config: z.ZodObject<{
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
             }[] | undefined;
+            gcp_secret_manager?: {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
+            }[] | undefined;
         }, {
             aws_assume_role_arn?: string | undefined;
             gcp_service_account?: string | undefined;
@@ -2048,6 +2707,14 @@ declare const Config: z.ZodObject<{
                 version_id?: string | undefined;
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
+            }[] | undefined;
+            gcp_secret_manager?: {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
             }[] | undefined;
         }>>;
         tfmigrate_apply_config: z.ZodOptional<z.ZodObject<{
@@ -2111,6 +2778,32 @@ declare const Config: z.ZodObject<{
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
             }>, "many">>;
+            gcp_secret_manager: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                env: z.ZodObject<{
+                    env_name: z.ZodString;
+                }, "strip", z.ZodTypeAny, {
+                    env_name: string;
+                }, {
+                    env_name: string;
+                }>;
+                project_id: z.ZodString;
+                secret_id: z.ZodString;
+                version: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
+            }, {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
+            }>, "many">>;
         }, "strip", z.ZodTypeAny, {
             aws_assume_role_arn?: string | undefined;
             gcp_service_account?: string | undefined;
@@ -2136,6 +2829,14 @@ declare const Config: z.ZodObject<{
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
             }[] | undefined;
+            gcp_secret_manager?: {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
+            }[] | undefined;
         }, {
             aws_assume_role_arn?: string | undefined;
             gcp_service_account?: string | undefined;
@@ -2160,6 +2861,14 @@ declare const Config: z.ZodObject<{
                 version_id?: string | undefined;
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
+            }[] | undefined;
+            gcp_secret_manager?: {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
             }[] | undefined;
         }>>;
         tfmigrate_plan_config: z.ZodOptional<z.ZodObject<{
@@ -2223,6 +2932,32 @@ declare const Config: z.ZodObject<{
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
             }>, "many">>;
+            gcp_secret_manager: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                env: z.ZodObject<{
+                    env_name: z.ZodString;
+                }, "strip", z.ZodTypeAny, {
+                    env_name: string;
+                }, {
+                    env_name: string;
+                }>;
+                project_id: z.ZodString;
+                secret_id: z.ZodString;
+                version: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
+            }, {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
+            }>, "many">>;
         }, "strip", z.ZodTypeAny, {
             aws_assume_role_arn?: string | undefined;
             gcp_service_account?: string | undefined;
@@ -2248,6 +2983,14 @@ declare const Config: z.ZodObject<{
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
             }[] | undefined;
+            gcp_secret_manager?: {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
+            }[] | undefined;
         }, {
             aws_assume_role_arn?: string | undefined;
             gcp_service_account?: string | undefined;
@@ -2272,6 +3015,14 @@ declare const Config: z.ZodObject<{
                 version_id?: string | undefined;
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
+            }[] | undefined;
+            gcp_secret_manager?: {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
             }[] | undefined;
         }>>;
         working_directory: z.ZodString;
@@ -2308,6 +3059,32 @@ declare const Config: z.ZodObject<{
             version_id?: string | undefined;
             version_stage?: string | undefined;
             aws_region?: string | undefined;
+        }>, "many">>;
+        gcp_secret_manager: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            env: z.ZodObject<{
+                env_name: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                env_name: string;
+            }, {
+                env_name: string;
+            }>;
+            project_id: z.ZodString;
+            secret_id: z.ZodString;
+            version: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
+        }, {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
         }>, "many">>;
         terraform_command: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
@@ -2356,6 +3133,14 @@ declare const Config: z.ZodObject<{
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
             }[] | undefined;
+            gcp_secret_manager?: {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
+            }[] | undefined;
         } | undefined;
         terraform_plan_config?: {
             aws_assume_role_arn?: string | undefined;
@@ -2381,6 +3166,14 @@ declare const Config: z.ZodObject<{
                 version_id?: string | undefined;
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
+            }[] | undefined;
+            gcp_secret_manager?: {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
             }[] | undefined;
         } | undefined;
         tfmigrate_apply_config?: {
@@ -2408,6 +3201,14 @@ declare const Config: z.ZodObject<{
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
             }[] | undefined;
+            gcp_secret_manager?: {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
+            }[] | undefined;
         } | undefined;
         tfmigrate_plan_config?: {
             aws_assume_role_arn?: string | undefined;
@@ -2434,6 +3235,14 @@ declare const Config: z.ZodObject<{
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
             }[] | undefined;
+            gcp_secret_manager?: {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
+            }[] | undefined;
         } | undefined;
         aws_secrets_manager?: {
             envs: {
@@ -2444,6 +3253,14 @@ declare const Config: z.ZodObject<{
             version_id?: string | undefined;
             version_stage?: string | undefined;
             aws_region?: string | undefined;
+        }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
         }[] | undefined;
         terraform_command?: string | undefined;
     }, {
@@ -2492,6 +3309,14 @@ declare const Config: z.ZodObject<{
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
             }[] | undefined;
+            gcp_secret_manager?: {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
+            }[] | undefined;
         } | undefined;
         terraform_plan_config?: {
             aws_assume_role_arn?: string | undefined;
@@ -2517,6 +3342,14 @@ declare const Config: z.ZodObject<{
                 version_id?: string | undefined;
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
+            }[] | undefined;
+            gcp_secret_manager?: {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
             }[] | undefined;
         } | undefined;
         tfmigrate_apply_config?: {
@@ -2544,6 +3377,14 @@ declare const Config: z.ZodObject<{
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
             }[] | undefined;
+            gcp_secret_manager?: {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
+            }[] | undefined;
         } | undefined;
         tfmigrate_plan_config?: {
             aws_assume_role_arn?: string | undefined;
@@ -2570,6 +3411,14 @@ declare const Config: z.ZodObject<{
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
             }[] | undefined;
+            gcp_secret_manager?: {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
+            }[] | undefined;
         } | undefined;
         aws_secrets_manager?: {
             envs: {
@@ -2580,6 +3429,14 @@ declare const Config: z.ZodObject<{
             version_id?: string | undefined;
             version_stage?: string | undefined;
             aws_region?: string | undefined;
+        }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
         }[] | undefined;
         terraform_command?: string | undefined;
     }>, "many">;
@@ -2668,6 +3525,14 @@ declare const Config: z.ZodObject<{
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
             }[] | undefined;
+            gcp_secret_manager?: {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
+            }[] | undefined;
         } | undefined;
         terraform_plan_config?: {
             aws_assume_role_arn?: string | undefined;
@@ -2693,6 +3558,14 @@ declare const Config: z.ZodObject<{
                 version_id?: string | undefined;
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
+            }[] | undefined;
+            gcp_secret_manager?: {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
             }[] | undefined;
         } | undefined;
         tfmigrate_apply_config?: {
@@ -2720,6 +3593,14 @@ declare const Config: z.ZodObject<{
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
             }[] | undefined;
+            gcp_secret_manager?: {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
+            }[] | undefined;
         } | undefined;
         tfmigrate_plan_config?: {
             aws_assume_role_arn?: string | undefined;
@@ -2746,6 +3627,14 @@ declare const Config: z.ZodObject<{
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
             }[] | undefined;
+            gcp_secret_manager?: {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
+            }[] | undefined;
         } | undefined;
         aws_secrets_manager?: {
             envs: {
@@ -2756,6 +3645,14 @@ declare const Config: z.ZodObject<{
             version_id?: string | undefined;
             version_stage?: string | undefined;
             aws_region?: string | undefined;
+        }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
         }[] | undefined;
         terraform_command?: string | undefined;
     }[];
@@ -2855,6 +3752,14 @@ declare const Config: z.ZodObject<{
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
             }[] | undefined;
+            gcp_secret_manager?: {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
+            }[] | undefined;
         } | undefined;
         terraform_plan_config?: {
             aws_assume_role_arn?: string | undefined;
@@ -2880,6 +3785,14 @@ declare const Config: z.ZodObject<{
                 version_id?: string | undefined;
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
+            }[] | undefined;
+            gcp_secret_manager?: {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
             }[] | undefined;
         } | undefined;
         tfmigrate_apply_config?: {
@@ -2907,6 +3820,14 @@ declare const Config: z.ZodObject<{
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
             }[] | undefined;
+            gcp_secret_manager?: {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
+            }[] | undefined;
         } | undefined;
         tfmigrate_plan_config?: {
             aws_assume_role_arn?: string | undefined;
@@ -2933,6 +3854,14 @@ declare const Config: z.ZodObject<{
                 version_stage?: string | undefined;
                 aws_region?: string | undefined;
             }[] | undefined;
+            gcp_secret_manager?: {
+                secret_id: string;
+                env: {
+                    env_name: string;
+                };
+                project_id: string;
+                version?: string | undefined;
+            }[] | undefined;
         } | undefined;
         aws_secrets_manager?: {
             envs: {
@@ -2943,6 +3872,14 @@ declare const Config: z.ZodObject<{
             version_id?: string | undefined;
             version_stage?: string | undefined;
             aws_region?: string | undefined;
+        }[] | undefined;
+        gcp_secret_manager?: {
+            secret_id: string;
+            env: {
+                env_name: string;
+            };
+            project_id: string;
+            version?: string | undefined;
         }[] | undefined;
         terraform_command?: string | undefined;
     }[];
